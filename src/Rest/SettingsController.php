@@ -185,12 +185,13 @@ final class SettingsController {
 				: '';
 		}
 
-		// Resolves to Cloudflare's zero-config "default" gateway when nothing
-		// more specific is configured — see GatewayClient::ensureGateway().
-		if ( $gatewayId === '' && $accountId !== '' && $apiKey !== '' ) {
-			$gatewayId = GatewayClient::ensureGateway();
-		}
-
+		// Deliberately left as '' here when the user hasn't picked a specific
+		// gateway — get_gateway_id() already resolves an empty stored value to
+		// Cloudflare's zero-config "default" gateway at read time. Persisting
+		// the literal string "default" here would desync from the Credentials
+		// tab's "Auto" option (value ''), making the dropdown silently show
+		// the wrong selection (the browser falls back to the first <option>
+		// when the bound value matches none of them).
 		update_option(
 			CFAIG_SETTINGS_OPTION,
 			array(

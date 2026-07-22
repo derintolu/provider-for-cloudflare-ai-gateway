@@ -48,6 +48,9 @@ export default function CredentialsTab() {
 	const [ preferredModel, setPreferredModel ] = useState( '' );
 	const [ models, setModels ] = useState< TextModel[] >( [] );
 	const [ gateways, setGateways ] = useState< GatewayRecord[] >( [] );
+	const [ gatewaysError, setGatewaysError ] = useState< string | null >(
+		null
+	);
 	const [ notice, setNotice ] = useState< NoticeState >( null );
 	const [ inferenceTesting, setInferenceTesting ] = useState( false );
 	const [ inferenceResult, setInferenceResult ] =
@@ -85,7 +88,22 @@ export default function CredentialsTab() {
 			return;
 		}
 		listTextModels().then( ( result ) => setModels( result.models ) );
-		listGateways().then( ( result ) => setGateways( result.gateways ) );
+		listGateways()
+			.then( ( result ) => {
+				setGateways( result.gateways );
+				setGatewaysError( null );
+			} )
+			.catch( ( err ) =>
+				setGatewaysError(
+					getErrorMessage(
+						err,
+						__(
+							'Could not load your named gateways.',
+							'cloudflare-ai-gateway'
+						)
+					)
+				)
+			);
 	}, [ settings ] );
 
 	const hasCredentials =
@@ -196,6 +214,25 @@ export default function CredentialsTab() {
 						) }
 					</Notice>
 				) }
+
+			<Notice status="info" isDismissible={ false }>
+				<p style={ { margin: 0 } }>
+					{ createInterpolateElement(
+						__(
+							'<link>Create your Cloudflare API token</link> with both <strong>Workers AI — Edit</strong> and <strong>AI Gateway — Edit</strong> permissions. Text/image generation only needs Workers AI, but the Gateway Config and Logs tabs — and the gateway picker below — need AI Gateway too, or Cloudflare will reject those requests with a generic "Authentication error" even though the token itself is valid. Under "Account Resources," scope the token to this specific account rather than leaving it unselected.',
+							'cloudflare-ai-gateway'
+						),
+						{
+							link: (
+								<ExternalLink href="https://dash.cloudflare.com/profile/api-tokens">
+									{ null }
+								</ExternalLink>
+							),
+							strong: <strong />,
+						}
+					) }
+				</p>
+			</Notice>
 
 			<Card>
 				<CardHeader>
@@ -329,7 +366,7 @@ export default function CredentialsTab() {
 								options={ [
 									{
 										label: __(
-											'— Auto (created for this site) —',
+											"— Default (Cloudflare's built-in gateway, no setup needed) —",
 											'cloudflare-ai-gateway'
 										),
 										value: '',
@@ -348,6 +385,21 @@ export default function CredentialsTab() {
 									'cloudflare-ai-gateway'
 								) }
 							</p>
+							{ gatewaysError && (
+								<Notice
+									status="warning"
+									isDismissible={ false }
+								>
+									{ sprintf(
+										// translators: %s: the underlying error message.
+										__(
+											"%s Your named gateways (if any) won't show in the list above, and the Gateway Config/Logs tabs won't work, until that's fixed — but text/image generation is unaffected, since those only need Workers AI access.",
+											'cloudflare-ai-gateway'
+										),
+										gatewaysError
+									) }
+								</Notice>
+							) }
 
 							<Flex justify="flex-start" gap={ 2 } align="center">
 								<FlexItem>
