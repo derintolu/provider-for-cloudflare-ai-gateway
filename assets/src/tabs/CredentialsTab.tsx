@@ -47,6 +47,7 @@ export default function CredentialsTab() {
 	const [ gatewayId, setGatewayId ] = useState( '' );
 	const [ preferredModel, setPreferredModel ] = useState( '' );
 	const [ models, setModels ] = useState< TextModel[] >( [] );
+	const [ modelsError, setModelsError ] = useState< string | null >( null );
 	const [ gateways, setGateways ] = useState< GatewayRecord[] >( [] );
 	const [ gatewaysError, setGatewaysError ] = useState< string | null >(
 		null
@@ -87,7 +88,22 @@ export default function CredentialsTab() {
 		) {
 			return;
 		}
-		listTextModels().then( ( result ) => setModels( result.models ) );
+		listTextModels()
+			.then( ( result ) => {
+				setModels( result.models );
+				setModelsError( null );
+			} )
+			.catch( ( err ) =>
+				setModelsError(
+					getErrorMessage(
+						err,
+						__(
+							'Could not load your available models.',
+							'cloudflare-ai-gateway'
+						)
+					)
+				)
+			);
 		listGateways()
 			.then( ( result ) => {
 				setGateways( result.gateways );
@@ -182,6 +198,40 @@ export default function CredentialsTab() {
 				} )
 			)
 			.finally( () => setInferenceTesting( false ) );
+	};
+
+	const renderModelsStatus = () => {
+		if ( modelsError ) {
+			return (
+				<Notice status="warning" isDismissible={ false }>
+					{ modelsError }
+				</Notice>
+			);
+		}
+
+		if ( models.length === 0 ) {
+			return (
+				<p className="cfaig-muted">
+					{ __(
+						'No live models loaded yet — only the built-in default is available. This list refreshes automatically once your account has models to show.',
+						'cloudflare-ai-gateway'
+					) }
+				</p>
+			);
+		}
+
+		return (
+			<p className="cfaig-muted">
+				{ sprintf(
+					// translators: %d: number of models loaded from the live Cloudflare catalog.
+					__(
+						'%d model(s) your account can access via Cloudflare Workers AI text generation. The full multi-modal catalog is on the Model Catalog tab.',
+						'cloudflare-ai-gateway'
+					),
+					models.length
+				) }
+			</p>
+		);
 	};
 
 	if ( loading ) {
@@ -485,12 +535,7 @@ export default function CredentialsTab() {
 								__next40pxDefaultSize
 								__nextHasNoMarginBottom
 							/>
-							<p className="cfaig-muted">
-								{ __(
-									'Every model your account can access via Cloudflare Workers AI text generation. The full multi-modal catalog is on the Model Catalog tab.',
-									'cloudflare-ai-gateway'
-								) }
-							</p>
+							{ renderModelsStatus() }
 						</>
 					) : (
 						<p className="cfaig-muted">
