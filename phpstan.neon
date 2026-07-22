@@ -1,0 +1,13 @@
+parameters:
+    level: 5
+    treatPhpDocTypesAsCertain: false
+    paths:
+        - cloudflare-ai-gateway.php
+        - uninstall.php
+        - src
+    bootstrapFiles:
+        - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+    scanFiles:
+        - stubs/ai-client-stubs.php
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon

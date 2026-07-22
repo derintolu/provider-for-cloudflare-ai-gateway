@@ -1,0 +1,85 @@
+.cfaig-app {
+	max-width: 960px;
+	margin-top: 16px;
+
+	&__title {
+		font-size: 23px;
+		font-weight: 400;
+		margin: 0 0 16px;
+	}
+
+	&__tabs {
+
+		.components-tab-panel__tab-content {
+			padding-top: 16px;
+		}
+	}
+}
+
+.cfaig-card-heading {
+	font-size: 15px;
+	font-weight: 600;
+	margin: 0;
+}
+
+.cfaig-muted {
+	color: #757575;
+	margin: 8px 0 0;
+}
+
+.cfaig-ok {
+	color: #00a32a;
+	font-weight: 600;
+}
+
+.cfaig-fail {
+	color: #d63638;
+	font-weight: 600;
+}
+
+.cfaig-table-scroll {
+	overflow-x: auto;
+}
+
+.cfaig-table {
+	width: 100%;
+	border-collapse: collapse;
+
+	th,
+	td {
+		text-align: left;
+		padding: 8px 12px;
+		border-bottom: 1px solid #e0e0e0;
+		white-space: nowrap;
+	}
+
+	th {
+		font-weight: 600;
+		color: #1e1e1e;
+	}
+}
+
+.cfaig-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 3px;
+	background: #f0f0f1;
+	color: #1e1e1e;
+	font-size: 12px;
+}
+
+.cfaig-stat {
+	font-size: 24px;
+	font-weight: 600;
+	margin: 4px 0 0;
+}
+
+.cfaig-raw {
+	background: #f0f0f1;
+	padding: 12px;
+	border-radius: 3px;
+	overflow-x: auto;
+	font-size: 12px;
+	max-height: 320px;
+	overflow-y: auto;
+}

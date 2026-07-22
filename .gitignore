@@ -1,0 +1,7 @@
+/vendor/
+/node_modules/
+/assets/build/
+/.wp-playground-data/
+.DS_Store
+*.log
+CONTEXT.md

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<ruleset name="AI Gateway for Cloudflare">
+    <description>Coding standards for the AI Gateway for Cloudflare plugin.</description>
+
+    <file>.</file>
+    <exclude-pattern>/vendor/*</exclude-pattern>
+    <exclude-pattern>/node_modules/*</exclude-pattern>
+    <exclude-pattern>/assets/build/*</exclude-pattern>
+    <exclude-pattern>/stubs/*</exclude-pattern>
+
+    <arg value="sp"/>
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+    <arg parallel="8"/>
+
+    <rule ref="WordPress-Extra">
+        <exclude name="WordPress.Files.FileName"/>
+        <!-- This codebase integrates tightly with the WordPress\AiClient SDK, which is
+             itself camelCase throughout (generateTextResult, usingProvider, etc.) — our
+             own classes follow the same convention rather than mixing snake_case WP-style
+             method names with camelCase SDK calls. Matches the original fork's style too. -->
+        <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
+        <exclude name="WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid"/>
+    </rule>
+    <rule ref="WordPress-Docs"/>
+
+    <!-- `<?php` followed by a blank line before the file docblock is the standard
+         WordPress plugin-header layout (every file here, and the original fork,
+         uses it consistently) — not a spacing mistake to flag. -->
+    <rule ref="Squiz.Commenting.FileComment.SpacingAfterOpen">
+        <severity>0</severity>
+    </rule>
+
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="cloudflare-ai-gateway"/>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="PHPCompatibilityWP"/>
+    <config name="testVersion" value="8.0-"/>
+
+    <rule ref="WordPress.NamingConventions.ValidVariableName">
+        <exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar"/>
+        <exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase"/>
+        <exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase"/>
+        <exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCase"/>
+    </rule>
+
+    <!-- Yoda conditions guard against `=`/`==` typos, a risk `declare(strict_types=1)`
+         plus PHPStan already cover here — the original fork this plugin forks from
+         doesn't use them either, so this keeps that established style consistent. -->
+    <rule ref="WordPress.PHP.YodaConditions">
+        <severity>0</severity>
+    </rule>
+</ruleset>

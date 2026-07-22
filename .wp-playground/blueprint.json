@@ -1,0 +1,15 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "url",
+				"url": "https://downloads.wordpress.org/plugin/ai.zip"
+			},
+			"options": {
+				"activate": true
+			}
+		}
+	]
+}
