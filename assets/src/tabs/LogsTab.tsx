@@ -40,7 +40,7 @@ export default function LogsTab() {
 							err,
 							__(
 								'Could not load gateway logs.',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							)
 						)
 					)
@@ -60,13 +60,13 @@ export default function LogsTab() {
 							<TextControl
 								label={ __(
 									'Filter by model',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 								value={ model }
 								onChange={ setModel }
 								placeholder={ __(
 									'e.g. llama',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 								__next40pxDefaultSize
 								__nextHasNoMarginBottom
@@ -76,7 +76,7 @@ export default function LogsTab() {
 							<SelectControl
 								label={ __(
 									'Status',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 								value={ success }
 								onChange={ setSuccess }
@@ -84,21 +84,21 @@ export default function LogsTab() {
 									{
 										label: __(
 											'All',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										value: '',
 									},
 									{
 										label: __(
 											'Success',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										value: 'true',
 									},
 									{
 										label: __(
 											'Failed',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										value: 'false',
 									},
@@ -109,28 +109,31 @@ export default function LogsTab() {
 						</FlexItem>
 						<FlexItem style={ { minWidth: '180px' } }>
 							<SelectControl
-								label={ __( 'Cache', 'cloudflare-ai-gateway' ) }
+								label={ __(
+									'Cache',
+									'provider-for-cloudflare-ai-gateway'
+								) }
 								value={ cached }
 								onChange={ setCached }
 								options={ [
 									{
 										label: __(
 											'All',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										value: '',
 									},
 									{
 										label: __(
 											'Cache hit',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										value: 'true',
 									},
 									{
 										label: __(
 											'Cache miss',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										value: 'false',
 									},
@@ -163,7 +166,7 @@ export default function LogsTab() {
 										<p className="cfaig-muted">
 											{ __(
 												'Requests',
-												'cloudflare-ai-gateway'
+												'provider-for-cloudflare-ai-gateway'
 											) }
 										</p>
 										<p className="cfaig-stat">
@@ -178,7 +181,7 @@ export default function LogsTab() {
 										<p className="cfaig-muted">
 											{ __(
 												'Cache hit rate',
-												'cloudflare-ai-gateway'
+												'provider-for-cloudflare-ai-gateway'
 											) }
 										</p>
 										<p className="cfaig-stat">
@@ -193,7 +196,7 @@ export default function LogsTab() {
 										<p className="cfaig-muted">
 											{ __(
 												'Total cost (this page)',
-												'cloudflare-ai-gateway'
+												'provider-for-cloudflare-ai-gateway'
 											) }
 										</p>
 										<p className="cfaig-stat">
@@ -211,7 +214,7 @@ export default function LogsTab() {
 								<p className="cfaig-muted">
 									{ __(
 										'No requests logged yet.',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									) }
 								</p>
 							) : (
@@ -222,43 +225,43 @@ export default function LogsTab() {
 												<th>
 													{ __(
 														'Time',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													) }
 												</th>
 												<th>
 													{ __(
 														'Model',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													) }
 												</th>
 												<th>
 													{ __(
 														'Status',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													) }
 												</th>
 												<th>
 													{ __(
 														'Cache',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													) }
 												</th>
 												<th>
 													{ __(
 														'Tokens',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													) }
 												</th>
 												<th>
 													{ __(
 														'Cost',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													) }
 												</th>
 												<th>
 													{ __(
 														'Duration',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													) }
 												</th>
 											</tr>
@@ -289,11 +292,11 @@ export default function LogsTab() {
 															{ log.success
 																? __(
 																		'Success',
-																		'cloudflare-ai-gateway'
+																		'provider-for-cloudflare-ai-gateway'
 																  )
 																: __(
 																		'Failed',
-																		'cloudflare-ai-gateway'
+																		'provider-for-cloudflare-ai-gateway'
 																  ) }
 														</span>
 													</td>
@@ -301,11 +304,11 @@ export default function LogsTab() {
 														{ log.cached
 															? __(
 																	'Hit',
-																	'cloudflare-ai-gateway'
+																	'provider-for-cloudflare-ai-gateway'
 															  )
 															: __(
 																	'Miss',
-																	'cloudflare-ai-gateway'
+																	'provider-for-cloudflare-ai-gateway'
 															  ) }
 													</td>
 													<td>

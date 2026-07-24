@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Gateway;
+namespace ProviderForCloudflareAiGateway\Gateway;
 
 use WP_Error;
 
-use function WordPress\CloudflareAiGateway\get_account_id;
-use function WordPress\CloudflareAiGateway\get_api_key;
+use function ProviderForCloudflareAiGateway\get_account_id;
+use function ProviderForCloudflareAiGateway\get_api_key;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -55,7 +55,7 @@ final class InferenceClient {
 		if ( $accountId === '' || $apiKey === '' ) {
 			return new WP_Error(
 				'cfaig_missing_credentials',
-				__( 'Account ID and API token are both required.', 'cloudflare-ai-gateway' ),
+				__( 'Account ID and API token are both required.', 'provider-for-cloudflare-ai-gateway' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -108,7 +108,7 @@ final class InferenceClient {
 		}
 
 		if ( ! is_array( $data ) ) {
-			return new WP_Error( 'cfaig_inference_error', __( 'Unexpected response from Cloudflare.', 'cloudflare-ai-gateway' ) );
+			return new WP_Error( 'cfaig_inference_error', __( 'Unexpected response from Cloudflare.', 'provider-for-cloudflare-ai-gateway' ) );
 		}
 
 		$reply = $data['choices'][0]['message']['content'] ?? null;

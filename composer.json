@@ -1,5 +1,5 @@
 {
-    "name": "cedarstone/cloudflare-ai-gateway",
+    "name": "cedarstone/provider-for-cloudflare-ai-gateway",
     "description": "Run any Cloudflare-hosted AI model from WordPress, routed entirely through Cloudflare AI Gateway, with a native wp-admin UI and full Abilities API integration. Forked from AI Provider for Cloudflare.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "WordPress\\CloudflareAiGateway\\": "src/"
+            "ProviderForCloudflareAiGateway\\": "src/"
         }
     },
     "scripts": {

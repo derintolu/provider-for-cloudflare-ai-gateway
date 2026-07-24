@@ -38,7 +38,7 @@ export default function ModelCatalogTab() {
 							? String( ( err as { message: unknown } ).message )
 							: __(
 									'Could not load the model catalog.',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 							  )
 					)
 				)
@@ -57,27 +57,30 @@ export default function ModelCatalogTab() {
 							<SearchControl
 								label={ __(
 									'Search models',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 								value={ search }
 								onChange={ setSearch }
 								placeholder={ __(
 									'e.g. llama, flux, whisper…',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 								__nextHasNoMarginBottom
 							/>
 						</FlexBlock>
 						<FlexItem style={ { minWidth: '220px' } }>
 							<SelectControl
-								label={ __( 'Task', 'cloudflare-ai-gateway' ) }
+								label={ __(
+									'Task',
+									'provider-for-cloudflare-ai-gateway'
+								) }
 								value={ task }
 								onChange={ setTask }
 								options={ [
 									{
 										label: __(
 											'All tasks',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										value: '',
 									},
@@ -113,7 +116,7 @@ export default function ModelCatalogTab() {
 									? null
 									: __(
 											'No models found. Save your Account ID and API token on the Credentials tab first.',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 									  ) }
 							</p>
 						) : (
@@ -123,7 +126,7 @@ export default function ModelCatalogTab() {
 										// translators: %d is the number of models shown
 										__(
 											'%d model(s)',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										models.length
 									) }
@@ -135,13 +138,13 @@ export default function ModelCatalogTab() {
 												<th>
 													{ __(
 														'Model ID',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													) }
 												</th>
 												<th>
 													{ __(
 														'Task',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													) }
 												</th>
 											</tr>

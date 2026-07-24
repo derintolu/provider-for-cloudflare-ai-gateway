@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Rest;
+namespace ProviderForCloudflareAiGateway\Rest;
 
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
-use WordPress\CloudflareAiGateway\Gateway\ModelCatalog;
+use ProviderForCloudflareAiGateway\Gateway\ModelCatalog;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Rest;
+namespace ProviderForCloudflareAiGateway\Rest;
 
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
 use WordPress\AiClient\AiClient;
-use WordPress\CloudflareAiGateway\Gateway\GatewayClient;
-use WordPress\CloudflareAiGateway\Gateway\ModelCatalog;
-use WordPress\CloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
+use ProviderForCloudflareAiGateway\Gateway\GatewayClient;
+use ProviderForCloudflareAiGateway\Gateway\ModelCatalog;
+use ProviderForCloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
 
-use function WordPress\CloudflareAiGateway\core_connector_is_available;
-use function WordPress\CloudflareAiGateway\fetch_available_models;
-use function WordPress\CloudflareAiGateway\get_account_id;
-use function WordPress\CloudflareAiGateway\get_api_key;
-use function WordPress\CloudflareAiGateway\get_gateway_id;
-use function WordPress\CloudflareAiGateway\get_plugin_settings;
-use function WordPress\CloudflareAiGateway\is_connector_approved;
+use function ProviderForCloudflareAiGateway\core_connector_is_available;
+use function ProviderForCloudflareAiGateway\fetch_available_models;
+use function ProviderForCloudflareAiGateway\get_account_id;
+use function ProviderForCloudflareAiGateway\get_api_key;
+use function ProviderForCloudflareAiGateway\get_gateway_id;
+use function ProviderForCloudflareAiGateway\get_plugin_settings;
+use function ProviderForCloudflareAiGateway\is_connector_approved;
 
-use const WordPress\CloudflareAiGateway\CFAIG_MODELS_TRANSIENT;
-use const WordPress\CloudflareAiGateway\CFAIG_SETTINGS_OPTION;
+use const ProviderForCloudflareAiGateway\CFAIG_MODELS_TRANSIENT;
+use const ProviderForCloudflareAiGateway\CFAIG_SETTINGS_OPTION;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -236,7 +236,7 @@ final class SettingsController {
 		if ( $accountId === '' || $apiKey === '' ) {
 			return new WP_Error(
 				'cfaig_missing_credentials',
-				__( 'Account ID and API token are both required before testing the connection.', 'cloudflare-ai-gateway' ),
+				__( 'Account ID and API token are both required before testing the connection.', 'provider-for-cloudflare-ai-gateway' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -246,7 +246,7 @@ final class SettingsController {
 				array(
 					'success' => false,
 					'reason'  => 'pending_approval',
-					'message' => __( 'Connector not yet approved — allow this plugin on the Connectors screen, then test again.', 'cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
+					'message' => __( 'Connector not yet approved — allow this plugin on the Connectors screen, then test again.', 'provider-for-cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
 				)
 			);
 		}
@@ -298,7 +298,7 @@ final class SettingsController {
 		return new WP_REST_Response(
 			array(
 				'success' => true,
-				'message' => __( 'Connected ✓ — credentials are valid.', 'cloudflare-ai-gateway' ),
+				'message' => __( 'Connected ✓ — credentials are valid.', 'provider-for-cloudflare-ai-gateway' ),
 			)
 		);
 	}
@@ -333,7 +333,7 @@ final class SettingsController {
 			return new WP_REST_Response(
 				array(
 					'success' => false,
-					'message' => __( 'The WordPress AI Client is not available on this site.', 'cloudflare-ai-gateway' ),
+					'message' => __( 'The WordPress AI Client is not available on this site.', 'provider-for-cloudflare-ai-gateway' ),
 				)
 			);
 		}

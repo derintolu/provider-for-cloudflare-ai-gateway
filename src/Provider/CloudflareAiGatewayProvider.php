@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 // phpcs:disable WordPress.Security.EscapeOutput -- No HTML output in this file; exception messages are not rendered.
 
-namespace WordPress\CloudflareAiGateway\Provider;
+namespace ProviderForCloudflareAiGateway\Provider;
 
 use WordPress\AiClient\Common\Exception\RuntimeException;
 use WordPress\AiClient\Providers\ApiBasedImplementation\AbstractApiProvider;
@@ -16,9 +16,9 @@ use WordPress\AiClient\Providers\Enums\ProviderTypeEnum;
 use WordPress\AiClient\Providers\Http\Enums\RequestAuthenticationMethod;
 use WordPress\AiClient\Providers\Models\Contracts\ModelInterface;
 use WordPress\AiClient\Providers\Models\DTO\ModelMetadata;
-use WordPress\CloudflareAiGateway\Metadata\CloudflareModelMetadataDirectory;
-use WordPress\CloudflareAiGateway\Models\CloudflareImageGenerationModel;
-use WordPress\CloudflareAiGateway\Models\CloudflareTextGenerationModel;
+use ProviderForCloudflareAiGateway\Metadata\CloudflareModelMetadataDirectory;
+use ProviderForCloudflareAiGateway\Models\CloudflareImageGenerationModel;
+use ProviderForCloudflareAiGateway\Models\CloudflareTextGenerationModel;
 
 /**
  * AI Provider for Cloudflare AI Gateway — text generation (including vision)
@@ -55,11 +55,11 @@ class CloudflareAiGatewayProvider extends AbstractApiProvider {
 	 * @since 0.2.0
 	 */
 	protected static function baseUrl(): string {
-		$accountId = function_exists( 'WordPress\\CloudflareAiGateway\\get_account_id' )
-			? \WordPress\CloudflareAiGateway\get_account_id()
+		$accountId = function_exists( 'ProviderForCloudflareAiGateway\\get_account_id' )
+			? \ProviderForCloudflareAiGateway\get_account_id()
 			: '';
-		$gatewayId = function_exists( 'WordPress\\CloudflareAiGateway\\get_gateway_id' )
-			? \WordPress\CloudflareAiGateway\get_gateway_id()
+		$gatewayId = function_exists( 'ProviderForCloudflareAiGateway\\get_gateway_id' )
+			? \ProviderForCloudflareAiGateway\get_gateway_id()
 			: '';
 
 		if ( $accountId === '' || $gatewayId === '' ) {
@@ -109,7 +109,7 @@ class CloudflareAiGatewayProvider extends AbstractApiProvider {
 			ProviderTypeEnum::cloud(),
 			'https://dash.cloudflare.com/?to=/:account/ai/ai-gateway',
 			RequestAuthenticationMethod::apiKey(),
-			__( 'Text and image generation with Cloudflare Workers AI models, routed through AI Gateway.', 'cloudflare-ai-gateway' ),
+			__( 'Text and image generation with Cloudflare Workers AI models, routed through AI Gateway.', 'provider-for-cloudflare-ai-gateway' ),
 			dirname( __DIR__, 2 ) . '/assets/images/cloudflare.svg'
 		);
 	}

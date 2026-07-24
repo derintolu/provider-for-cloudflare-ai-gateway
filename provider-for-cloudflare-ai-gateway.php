@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Plugin Name: AI Gateway for Cloudflare
- * Plugin URI: https://github.com/cedarstone/cloudflare-ai-gateway
+ * Plugin Name: Provider for Cloudflare AI Gateway
+ * Plugin URI: https://github.com/derintolu/provider-for-cloudflare-ai-gateway
  * Description: Run any Cloudflare-hosted AI model from your WordPress site, routed entirely through Cloudflare AI Gateway (caching, rate limiting, guardrails, logging) — with an admin UI that mirrors the Cloudflare dashboard and full WordPress Abilities API integration. Forked from AI Provider for Cloudflare.
  * Requires at least: 7.0
  * Requires PHP: 8.0
@@ -10,9 +10,9 @@
  * Author: Derin Tolu
  * License: GPL-2.0-or-later
  * License URI: https://spdx.org/licenses/GPL-2.0-or-later.html
- * Text Domain: cloudflare-ai-gateway
+ * Text Domain: provider-for-cloudflare-ai-gateway
  *
- * @package WordPress\CloudflareAiGateway
+ * @package ProviderForCloudflareAiGateway
  *
  * Forked from "AI Provider for Cloudflare" (aipcf-ai-provider-for-cloudflare) by Abhishek Deshpande
  * https://wordpress.org/plugins/aipcf-ai-provider-for-cloudflare/ — used and modified under GPL-2.0-or-later.
@@ -22,14 +22,14 @@ declare(strict_types=1);
 
 // phpcs:disable PSR1.Files.SideEffects -- WordPress plugin bootstrap files mix declarations and side effects by design.
 
-namespace WordPress\CloudflareAiGateway;
+namespace ProviderForCloudflareAiGateway;
 
 use WordPress\AiClient\AiClient;
 use WordPress\AiClient\Providers\Http\DTO\ApiKeyRequestAuthentication;
-use WordPress\CloudflareAiGateway\Abilities\AbilitiesRegistrar;
-use WordPress\CloudflareAiGateway\Admin\AdminMenu;
-use WordPress\CloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
-use WordPress\CloudflareAiGateway\Rest\RestApi;
+use ProviderForCloudflareAiGateway\Abilities\AbilitiesRegistrar;
+use ProviderForCloudflareAiGateway\Admin\AdminMenu;
+use ProviderForCloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
+use ProviderForCloudflareAiGateway\Rest\RestApi;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	return;
@@ -56,8 +56,8 @@ if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 			printf(
 				'<div class="notice notice-error"><p>%s</p></div>',
 				esc_html__(
-					'AI Gateway for Cloudflare: run "composer install" in the plugin directory before activating.',
-					'cloudflare-ai-gateway'
+					'Provider for Cloudflare AI Gateway: run "composer install" in the plugin directory before activating.',
+					'provider-for-cloudflare-ai-gateway'
 				)
 			);
 		}

@@ -1,8 +1,8 @@
 {
-  "name": "cloudflare-ai-gateway",
+  "name": "provider-for-cloudflare-ai-gateway",
   "version": "0.1.0",
   "private": true,
-  "description": "wp-admin React app for AI Gateway for Cloudflare.",
+  "description": "wp-admin React app for Provider for Cloudflare AI Gateway.",
   "license": "GPL-2.0-or-later",
   "author": "Derin Tolu",
   "scripts": {

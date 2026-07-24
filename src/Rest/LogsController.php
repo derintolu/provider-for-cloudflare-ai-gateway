@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Rest;
+namespace ProviderForCloudflareAiGateway\Rest;
 
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
-use WordPress\CloudflareAiGateway\Gateway\GatewayClient;
+use ProviderForCloudflareAiGateway\Gateway\GatewayClient;
 
-use function WordPress\CloudflareAiGateway\get_gateway_id;
+use function ProviderForCloudflareAiGateway\get_gateway_id;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -84,7 +84,7 @@ final class LogsController {
 		if ( $gatewayId === '' ) {
 			return new WP_Error(
 				'cfaig_no_gateway',
-				__( 'No gateway is configured yet — save your credentials on the Credentials tab first.', 'cloudflare-ai-gateway' ),
+				__( 'No gateway is configured yet — save your credentials on the Credentials tab first.', 'provider-for-cloudflare-ai-gateway' ),
 				array( 'status' => 400 )
 			);
 		}

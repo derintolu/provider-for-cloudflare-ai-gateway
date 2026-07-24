@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Models;
+namespace ProviderForCloudflareAiGateway\Models;
 
 use WordPress\AiClient\Files\DTO\File;
 use WordPress\AiClient\Messages\DTO\Message;
@@ -19,8 +19,8 @@ use WordPress\AiClient\Results\DTO\Candidate;
 use WordPress\AiClient\Results\DTO\GenerativeAiResult;
 use WordPress\AiClient\Results\DTO\TokenUsage;
 use WordPress\AiClient\Results\Enums\FinishReasonEnum;
-use WordPress\CloudflareAiGateway\Gateway\GatewayClient;
-use WordPress\CloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
+use ProviderForCloudflareAiGateway\Gateway\GatewayClient;
+use ProviderForCloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
 
 /**
  * Image generation model backed by Cloudflare Workers AI, routed through AI Gateway.

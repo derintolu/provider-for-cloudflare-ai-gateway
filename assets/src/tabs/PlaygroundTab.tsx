@@ -36,7 +36,7 @@ export default function PlaygroundTab() {
 						err,
 						__(
 							'Request failed unexpectedly.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						)
 					)
 				)
@@ -49,18 +49,24 @@ export default function PlaygroundTab() {
 			<Card>
 				<CardHeader>
 					<h3 className="cfaig-card-heading">
-						{ __( 'Run any model', 'cloudflare-ai-gateway' ) }
+						{ __(
+							'Run any model',
+							'provider-for-cloudflare-ai-gateway'
+						) }
 					</h3>
 				</CardHeader>
 				<CardBody>
 					<Flex direction="column" gap={ 4 }>
 						<TextControl
-							label={ __( 'Model', 'cloudflare-ai-gateway' ) }
+							label={ __(
+								'Model',
+								'provider-for-cloudflare-ai-gateway'
+							) }
 							help={ sprintf(
 								// translators: 1: example Workers AI model ID, 2: example third-party provider/model string
 								__(
 									"A Workers AI ID (like %1$s) or, if you've configured BYOK on the Cloudflare dashboard, a third-party provider/model string (like %2$s).",
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								),
 								'@cf/meta/llama-4-scout-17b-16e-instruct',
 								'openai/gpt-4.1'
@@ -71,7 +77,10 @@ export default function PlaygroundTab() {
 							__nextHasNoMarginBottom
 						/>
 						<TextareaControl
-							label={ __( 'Prompt', 'cloudflare-ai-gateway' ) }
+							label={ __(
+								'Prompt',
+								'provider-for-cloudflare-ai-gateway'
+							) }
 							value={ prompt }
 							onChange={ setPrompt }
 							rows={ 4 }
@@ -84,7 +93,10 @@ export default function PlaygroundTab() {
 								disabled={ running || ! model || ! prompt }
 								onClick={ handleRun }
 							>
-								{ __( 'Run', 'cloudflare-ai-gateway' ) }
+								{ __(
+									'Run',
+									'provider-for-cloudflare-ai-gateway'
+								) }
 							</Button>
 						</Flex>
 					</Flex>
@@ -107,21 +119,27 @@ export default function PlaygroundTab() {
 				<Card>
 					<CardHeader>
 						<h3 className="cfaig-card-heading">
-							{ __( 'Response', 'cloudflare-ai-gateway' ) }
+							{ __(
+								'Response',
+								'provider-for-cloudflare-ai-gateway'
+							) }
 						</h3>
 					</CardHeader>
 					<CardBody>
 						<Flex direction="column" gap={ 4 }>
 							<p>{ result.reply }</p>
 							<p className="cfaig-muted">
-								{ __( 'Latency:', 'cloudflare-ai-gateway' ) }{ ' ' }
+								{ __(
+									'Latency:',
+									'provider-for-cloudflare-ai-gateway'
+								) }{ ' ' }
 								{ result.latency }ms
 							</p>
 							<details>
 								<summary>
 									{ __(
 										'Raw response',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									) }
 								</summary>
 								<pre className="cfaig-raw">

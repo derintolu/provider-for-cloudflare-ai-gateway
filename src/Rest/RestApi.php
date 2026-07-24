@@ -5,12 +5,12 @@
  *
  * @since 0.1.0
  *
- * @package WordPress\CloudflareAiGateway
+ * @package ProviderForCloudflareAiGateway
  */
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Rest;
+namespace ProviderForCloudflareAiGateway\Rest;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

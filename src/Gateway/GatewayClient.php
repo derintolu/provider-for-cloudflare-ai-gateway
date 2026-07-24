@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Gateway;
+namespace ProviderForCloudflareAiGateway\Gateway;
 
 use WP_Error;
 use WordPress\AiClient\Providers\DTO\ProviderMetadata;
 use WordPress\AiClient\Providers\Http\Exception\ResponseException;
 
-use function WordPress\CloudflareAiGateway\get_account_id;
-use function WordPress\CloudflareAiGateway\get_api_key;
-use function WordPress\CloudflareAiGateway\get_gateway_id;
+use function ProviderForCloudflareAiGateway\get_account_id;
+use function ProviderForCloudflareAiGateway\get_api_key;
+use function ProviderForCloudflareAiGateway\get_gateway_id;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -219,7 +219,7 @@ final class GatewayClient {
 		if ( $accountId === '' || $apiKey === '' ) {
 			return new WP_Error(
 				'cfaig_missing_credentials',
-				__( 'Account ID and API token are required.', 'cloudflare-ai-gateway' ),
+				__( 'Account ID and API token are required.', 'provider-for-cloudflare-ai-gateway' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -264,14 +264,14 @@ final class GatewayClient {
 			// "AI Gateway - Edit" permission group, which is separate from
 			// "Workers AI - Edit" and not implied by it.
 			if ( $status === 401 || $status === 403 ) {
-				$message .= ' ' . __( '(Your Cloudflare API token is missing the "AI Gateway - Edit" permission — "Workers AI - Edit" alone is not enough to create or manage a gateway.)', 'cloudflare-ai-gateway' );
+				$message .= ' ' . __( '(Your Cloudflare API token is missing the "AI Gateway - Edit" permission — "Workers AI - Edit" alone is not enough to create or manage a gateway.)', 'provider-for-cloudflare-ai-gateway' );
 			}
 
 			return new WP_Error( 'cfaig_gateway_api_error', $message, array( 'status' => $status ) );
 		}
 
 		if ( ! is_array( $decoded ) ) {
-			return new WP_Error( 'cfaig_gateway_api_error', __( 'Unexpected response from Cloudflare.', 'cloudflare-ai-gateway' ) );
+			return new WP_Error( 'cfaig_gateway_api_error', __( 'Unexpected response from Cloudflare.', 'provider-for-cloudflare-ai-gateway' ) );
 		}
 
 		return $decoded;

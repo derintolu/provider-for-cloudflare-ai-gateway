@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 // phpcs:disable WordPress.Security.EscapeOutput -- No HTML output in this file; exception messages are not rendered.
 
-namespace WordPress\CloudflareAiGateway\Models;
+namespace ProviderForCloudflareAiGateway\Models;
 
 use WordPress\AiClient\Common\Exception\InvalidArgumentException;
 use WordPress\AiClient\Messages\DTO\Message;
@@ -21,8 +21,8 @@ use WordPress\AiClient\Results\DTO\Candidate;
 use WordPress\AiClient\Results\DTO\GenerativeAiResult;
 use WordPress\AiClient\Results\DTO\TokenUsage;
 use WordPress\AiClient\Results\Enums\FinishReasonEnum;
-use WordPress\CloudflareAiGateway\Gateway\GatewayClient;
-use WordPress\CloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
+use ProviderForCloudflareAiGateway\Gateway\GatewayClient;
+use ProviderForCloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
 
 /**
  * Text generation model backed by Cloudflare Workers AI, routed through AI Gateway.

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Abilities;
+namespace ProviderForCloudflareAiGateway\Abilities;
 
 use WP_Error;
-use WordPress\CloudflareAiGateway\Gateway\GatewayClient;
-use WordPress\CloudflareAiGateway\Gateway\InferenceClient;
-use WordPress\CloudflareAiGateway\Gateway\ModelCatalog;
+use ProviderForCloudflareAiGateway\Gateway\GatewayClient;
+use ProviderForCloudflareAiGateway\Gateway\InferenceClient;
+use ProviderForCloudflareAiGateway\Gateway\ModelCatalog;
 
-use function WordPress\CloudflareAiGateway\get_gateway_id;
+use function ProviderForCloudflareAiGateway\get_gateway_id;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -37,7 +37,7 @@ final class AbilitiesRegistrar {
 	 *
 	 * @since 0.7.0
 	 */
-	public const CATEGORY = 'cloudflare-ai-gateway';
+	public const CATEGORY = 'provider-for-cloudflare-ai-gateway';
 
 	/**
 	 * Registers the ability category. Must run on the `wp_abilities_api_categories_init`
@@ -55,8 +55,8 @@ final class AbilitiesRegistrar {
 		wp_register_ability_category(
 			self::CATEGORY,
 			array(
-				'label'       => __( 'Cloudflare AI Gateway', 'cloudflare-ai-gateway' ),
-				'description' => __( 'Browse Cloudflare\'s AI model catalog, run inference, and manage the AI Gateway configuration.', 'cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
+				'label'       => __( 'Cloudflare AI Gateway', 'provider-for-cloudflare-ai-gateway' ),
+				'description' => __( 'Browse Cloudflare\'s AI model catalog, run inference, and manage the AI Gateway configuration.', 'provider-for-cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
 			)
 		);
 	}
@@ -101,19 +101,19 @@ final class AbilitiesRegistrar {
 		wp_register_ability(
 			self::CATEGORY . '/list-models',
 			array(
-				'label'               => __( 'List Cloudflare AI models', 'cloudflare-ai-gateway' ),
-				'description'         => __( 'Returns every model available on the connected Cloudflare account, across every modality (text generation, image generation, embeddings, ASR/TTS, etc.), optionally filtered by task or a search term.', 'cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
+				'label'               => __( 'List Cloudflare AI models', 'provider-for-cloudflare-ai-gateway' ),
+				'description'         => __( 'Returns every model available on the connected Cloudflare account, across every modality (text generation, image generation, embeddings, ASR/TTS, etc.), optionally filtered by task or a search term.', 'provider-for-cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
 				'category'            => self::CATEGORY,
 				'input_schema'        => array(
 					'type'       => 'object',
 					'properties' => array(
 						'task'   => array(
 							'type'        => 'string',
-							'description' => __( 'Filter to a specific task/modality, e.g. "Text Generation".', 'cloudflare-ai-gateway' ),
+							'description' => __( 'Filter to a specific task/modality, e.g. "Text Generation".', 'provider-for-cloudflare-ai-gateway' ),
 						),
 						'search' => array(
 							'type'        => 'string',
-							'description' => __( 'Case-insensitive substring match on model ID.', 'cloudflare-ai-gateway' ),
+							'description' => __( 'Case-insensitive substring match on model ID.', 'provider-for-cloudflare-ai-gateway' ),
 						),
 					),
 				),
@@ -188,19 +188,19 @@ final class AbilitiesRegistrar {
 		wp_register_ability(
 			self::CATEGORY . '/run-inference',
 			array(
-				'label'               => __( 'Run Cloudflare AI inference', 'cloudflare-ai-gateway' ),
-				'description'         => __( 'Sends a prompt to any Cloudflare-hosted model (or, with BYOK configured on the Cloudflare dashboard, a third-party provider) through AI Gateway and returns the reply. This makes a real API call and may incur cost on the connected Cloudflare account.', 'cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
+				'label'               => __( 'Run Cloudflare AI inference', 'provider-for-cloudflare-ai-gateway' ),
+				'description'         => __( 'Sends a prompt to any Cloudflare-hosted model (or, with BYOK configured on the Cloudflare dashboard, a third-party provider) through AI Gateway and returns the reply. This makes a real API call and may incur cost on the connected Cloudflare account.', 'provider-for-cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
 				'category'            => self::CATEGORY,
 				'input_schema'        => array(
 					'type'       => 'object',
 					'properties' => array(
 						'model'  => array(
 							'type'        => 'string',
-							'description' => __( 'A Workers AI ID (@cf/...) or {provider}/{model} for a BYOK provider.', 'cloudflare-ai-gateway' ),
+							'description' => __( 'A Workers AI ID (@cf/...) or {provider}/{model} for a BYOK provider.', 'provider-for-cloudflare-ai-gateway' ),
 						),
 						'prompt' => array(
 							'type'        => 'string',
-							'description' => __( 'The prompt text to send.', 'cloudflare-ai-gateway' ),
+							'description' => __( 'The prompt text to send.', 'provider-for-cloudflare-ai-gateway' ),
 						),
 					),
 					'required'   => array( 'model', 'prompt' ),
@@ -238,7 +238,7 @@ final class AbilitiesRegistrar {
 		$prompt = is_array( $input ) && isset( $input['prompt'] ) ? (string) $input['prompt'] : '';
 
 		if ( $model === '' || $prompt === '' ) {
-			return new WP_Error( 'cfaig_missing_params', __( 'A model and a prompt are both required.', 'cloudflare-ai-gateway' ) );
+			return new WP_Error( 'cfaig_missing_params', __( 'A model and a prompt are both required.', 'provider-for-cloudflare-ai-gateway' ) );
 		}
 
 		return InferenceClient::run( $model, $prompt );
@@ -253,8 +253,8 @@ final class AbilitiesRegistrar {
 		wp_register_ability(
 			self::CATEGORY . '/get-gateway-settings',
 			array(
-				'label'               => __( 'Read Cloudflare AI Gateway settings', 'cloudflare-ai-gateway' ),
-				'description'         => __( 'Returns the configured AI Gateway\'s current settings (caching, rate limiting, retries, logging, authentication, and whatever else Cloudflare returns for it).', 'cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
+				'label'               => __( 'Read Cloudflare AI Gateway settings', 'provider-for-cloudflare-ai-gateway' ),
+				'description'         => __( 'Returns the configured AI Gateway\'s current settings (caching, rate limiting, retries, logging, authentication, and whatever else Cloudflare returns for it).', 'provider-for-cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
 				'category'            => self::CATEGORY,
 				'output_schema'       => array(
 					'type'                 => 'object',
@@ -286,7 +286,7 @@ final class AbilitiesRegistrar {
 	public static function executeGetGatewaySettings() {
 		$gatewayId = get_gateway_id();
 		if ( $gatewayId === '' ) {
-			return new WP_Error( 'cfaig_no_gateway', __( 'No gateway is configured yet.', 'cloudflare-ai-gateway' ) );
+			return new WP_Error( 'cfaig_no_gateway', __( 'No gateway is configured yet.', 'provider-for-cloudflare-ai-gateway' ) );
 		}
 
 		$gateway = GatewayClient::getGateway( $gatewayId );
@@ -294,7 +294,7 @@ final class AbilitiesRegistrar {
 			return $gateway;
 		}
 		if ( $gateway === null ) {
-			return new WP_Error( 'cfaig_gateway_not_found', __( 'The configured gateway no longer exists.', 'cloudflare-ai-gateway' ) );
+			return new WP_Error( 'cfaig_gateway_not_found', __( 'The configured gateway no longer exists.', 'provider-for-cloudflare-ai-gateway' ) );
 		}
 
 		return array_merge( array( 'gatewayId' => $gatewayId ), $gateway );
@@ -309,8 +309,8 @@ final class AbilitiesRegistrar {
 		wp_register_ability(
 			self::CATEGORY . '/update-gateway-settings',
 			array(
-				'label'               => __( 'Update Cloudflare AI Gateway settings', 'cloudflare-ai-gateway' ),
-				'description'         => __( 'Updates the configured AI Gateway\'s caching, rate limiting, retry, logging, and authentication settings. Fields omitted from the input are left unchanged.', 'cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
+				'label'               => __( 'Update Cloudflare AI Gateway settings', 'provider-for-cloudflare-ai-gateway' ),
+				'description'         => __( 'Updates the configured AI Gateway\'s caching, rate limiting, retry, logging, and authentication settings. Fields omitted from the input are left unchanged.', 'provider-for-cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
 				'category'            => self::CATEGORY,
 				'input_schema'        => array(
 					'type'       => 'object',
@@ -364,7 +364,7 @@ final class AbilitiesRegistrar {
 	public static function executeUpdateGatewaySettings( $input ) {
 		$gatewayId = get_gateway_id();
 		if ( $gatewayId === '' ) {
-			return new WP_Error( 'cfaig_no_gateway', __( 'No gateway is configured yet.', 'cloudflare-ai-gateway' ) );
+			return new WP_Error( 'cfaig_no_gateway', __( 'No gateway is configured yet.', 'provider-for-cloudflare-ai-gateway' ) );
 		}
 
 		if ( ! is_array( $input ) ) {
@@ -408,8 +408,8 @@ final class AbilitiesRegistrar {
 		wp_register_ability(
 			self::CATEGORY . '/get-gateway-logs',
 			array(
-				'label'               => __( 'Read Cloudflare AI Gateway logs', 'cloudflare-ai-gateway' ),
-				'description'         => __( 'Returns recent requests logged by the AI Gateway, plus aggregate stats (request count, cache-hit rate, total spend), optionally filtered by model, provider, success, or cache status.', 'cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
+				'label'               => __( 'Read Cloudflare AI Gateway logs', 'provider-for-cloudflare-ai-gateway' ),
+				'description'         => __( 'Returns recent requests logged by the AI Gateway, plus aggregate stats (request count, cache-hit rate, total spend), optionally filtered by model, provider, success, or cache status.', 'provider-for-cloudflare-ai-gateway' ), // phpcs:ignore Generic.Files.LineLength.TooLong
 				'category'            => self::CATEGORY,
 				'input_schema'        => array(
 					'type'       => 'object',
@@ -458,7 +458,7 @@ final class AbilitiesRegistrar {
 	public static function executeGetGatewayLogs( $input ) {
 		$gatewayId = get_gateway_id();
 		if ( $gatewayId === '' ) {
-			return new WP_Error( 'cfaig_no_gateway', __( 'No gateway is configured yet.', 'cloudflare-ai-gateway' ) );
+			return new WP_Error( 'cfaig_no_gateway', __( 'No gateway is configured yet.', 'provider-for-cloudflare-ai-gateway' ) );
 		}
 
 		if ( ! is_array( $input ) ) {

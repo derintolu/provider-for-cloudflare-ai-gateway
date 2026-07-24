@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Metadata;
+namespace ProviderForCloudflareAiGateway\Metadata;
 
 use WordPress\AiClient\AiClient;
 use WordPress\AiClient\Common\Exception\RuntimeException;
@@ -13,7 +13,7 @@ use WordPress\AiClient\Providers\Models\DTO\ModelMetadata;
 use WordPress\AiClient\Providers\Models\DTO\SupportedOption;
 use WordPress\AiClient\Providers\Models\Enums\CapabilityEnum;
 use WordPress\AiClient\Providers\Models\Enums\OptionEnum;
-use WordPress\CloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
+use ProviderForCloudflareAiGateway\Provider\CloudflareAiGatewayProvider;
 
 /**
  * Provides Cloudflare Workers AI models to the WordPress AI Client — text
@@ -95,15 +95,15 @@ class CloudflareModelMetadataDirectory extends AbstractApiBasedModelMetadataDire
 			);
 		}
 
-		$accountId = function_exists( 'WordPress\\CloudflareAiGateway\\get_account_id' )
-			? \WordPress\CloudflareAiGateway\get_account_id()
+		$accountId = function_exists( 'ProviderForCloudflareAiGateway\\get_account_id' )
+			? \ProviderForCloudflareAiGateway\get_account_id()
 			: '';
 
 		$textCapabilities = $this->buildCapabilities();
 		$textOptions      = $this->buildOptions( false );
 
-		$defaultModelId = function_exists( 'WordPress\\CloudflareAiGateway\\get_default_model_id' )
-			? \WordPress\CloudflareAiGateway\get_default_model_id()
+		$defaultModelId = function_exists( 'ProviderForCloudflareAiGateway\\get_default_model_id' )
+			? \ProviderForCloudflareAiGateway\get_default_model_id()
 			: '@cf/meta/llama-4-scout-17b-16e-instruct';
 
 		// No Account ID yet — validate the token alone and return the static
@@ -120,8 +120,8 @@ class CloudflareModelMetadataDirectory extends AbstractApiBasedModelMetadataDire
 		}
 
 		// Try live model list; fall back to static catalog on failure.
-		$liveItems = function_exists( 'WordPress\\CloudflareAiGateway\\fetch_available_models' )
-			? \WordPress\CloudflareAiGateway\fetch_available_models()
+		$liveItems = function_exists( 'ProviderForCloudflareAiGateway\\fetch_available_models' )
+			? \ProviderForCloudflareAiGateway\fetch_available_models()
 			: array();
 
 		if ( ! empty( $liveItems ) ) {
@@ -213,8 +213,8 @@ class CloudflareModelMetadataDirectory extends AbstractApiBasedModelMetadataDire
 		}
 
 		// Fall back to plugin settings / constant / environment variable.
-		return function_exists( 'WordPress\\CloudflareAiGateway\\get_api_key' )
-			? (string) \WordPress\CloudflareAiGateway\get_api_key()
+		return function_exists( 'ProviderForCloudflareAiGateway\\get_api_key' )
+			? (string) \ProviderForCloudflareAiGateway\get_api_key()
 			: '';
 	}
 

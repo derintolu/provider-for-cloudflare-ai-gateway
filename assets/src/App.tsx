@@ -10,19 +10,31 @@ import PlaygroundTab from './tabs/PlaygroundTab';
 const TABS = [
 	{
 		name: 'credentials',
-		title: __( 'Credentials', 'cloudflare-ai-gateway' ),
+		title: __( 'Credentials', 'provider-for-cloudflare-ai-gateway' ),
 	},
-	{ name: 'models', title: __( 'Model Catalog', 'cloudflare-ai-gateway' ) },
-	{ name: 'gateway', title: __( 'Gateway Config', 'cloudflare-ai-gateway' ) },
-	{ name: 'logs', title: __( 'Logs', 'cloudflare-ai-gateway' ) },
-	{ name: 'playground', title: __( 'Playground', 'cloudflare-ai-gateway' ) },
+	{
+		name: 'models',
+		title: __( 'Model Catalog', 'provider-for-cloudflare-ai-gateway' ),
+	},
+	{
+		name: 'gateway',
+		title: __( 'Gateway Config', 'provider-for-cloudflare-ai-gateway' ),
+	},
+	{ name: 'logs', title: __( 'Logs', 'provider-for-cloudflare-ai-gateway' ) },
+	{
+		name: 'playground',
+		title: __( 'Playground', 'provider-for-cloudflare-ai-gateway' ),
+	},
 ];
 
 export default function App() {
 	return (
 		<div className="cfaig-app">
 			<h1 className="cfaig-app__title">
-				{ __( 'AI Gateway for Cloudflare', 'cloudflare-ai-gateway' ) }
+				{ __(
+					'Provider for Cloudflare AI Gateway',
+					'provider-for-cloudflare-ai-gateway'
+				) }
 			</h1>
 			<TabPanel tabs={ TABS } className="cfaig-app__tabs">
 				{ ( tab ) => {

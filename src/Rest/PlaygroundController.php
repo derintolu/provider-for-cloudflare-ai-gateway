@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Rest;
+namespace ProviderForCloudflareAiGateway\Rest;
 
 use WP_Error;
 use WP_REST_Request;
 use WP_REST_Response;
-use WordPress\CloudflareAiGateway\Gateway\InferenceClient;
+use ProviderForCloudflareAiGateway\Gateway\InferenceClient;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -72,7 +72,7 @@ final class PlaygroundController {
 		if ( $model === '' || $prompt === '' ) {
 			return new WP_Error(
 				'cfaig_missing_params',
-				__( 'A model and a prompt are both required.', 'cloudflare-ai-gateway' ),
+				__( 'A model and a prompt are both required.', 'provider-for-cloudflare-ai-gateway' ),
 				array( 'status' => 400 )
 			);
 		}

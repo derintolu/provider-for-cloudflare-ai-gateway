@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Admin;
+namespace ProviderForCloudflareAiGateway\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,7 +21,7 @@ final class AdminMenu {
 	 *
 	 * @since 0.1.0
 	 */
-	public const PAGE_SLUG = 'cloudflare-ai-gateway';
+	public const PAGE_SLUG = 'provider-for-cloudflare-ai-gateway';
 
 	/**
 	 * Wires up admin hooks. Idempotent — safe to call multiple times.
@@ -48,8 +48,8 @@ final class AdminMenu {
 	 */
 	public static function registerMenu(): void {
 		add_menu_page(
-			__( 'AI Gateway for Cloudflare', 'cloudflare-ai-gateway' ),
-			__( 'Cloudflare AI Gateway', 'cloudflare-ai-gateway' ),
+			__( 'Provider for Cloudflare AI Gateway', 'provider-for-cloudflare-ai-gateway' ),
+			__( 'Cloudflare AI Gateway', 'provider-for-cloudflare-ai-gateway' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( self::class, 'renderPage' ),
@@ -80,8 +80,8 @@ final class AdminMenu {
 					printf(
 						'<div class="notice notice-error"><p>%s</p></div>',
 						esc_html__(
-							'AI Gateway for Cloudflare: run "npm install && npm run build" in the plugin directory.',
-							'cloudflare-ai-gateway'
+							'Provider for Cloudflare AI Gateway: run "npm install && npm run build" in the plugin directory.',
+							'provider-for-cloudflare-ai-gateway'
 						)
 					);
 				}
@@ -111,7 +111,7 @@ final class AdminMenu {
 			);
 		}
 
-		wp_set_script_translations( 'cloudflare-ai-gateway-admin', 'cloudflare-ai-gateway' );
+		wp_set_script_translations( 'cloudflare-ai-gateway-admin', 'provider-for-cloudflare-ai-gateway' );
 
 		wp_localize_script(
 			'cloudflare-ai-gateway-admin',

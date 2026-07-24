@@ -72,7 +72,7 @@ export default function CredentialsTab() {
 						err,
 						__(
 							'Could not load settings.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						)
 					),
 				} )
@@ -99,7 +99,7 @@ export default function CredentialsTab() {
 						err,
 						__(
 							'Could not load your available models.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						)
 					)
 				)
@@ -115,7 +115,7 @@ export default function CredentialsTab() {
 						err,
 						__(
 							'Could not load your named gateways.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						)
 					)
 				)
@@ -137,7 +137,10 @@ export default function CredentialsTab() {
 				setGatewayId( result.gatewayId );
 				setNotice( {
 					status: 'success',
-					message: __( 'Settings saved.', 'cloudflare-ai-gateway' ),
+					message: __(
+						'Settings saved.',
+						'provider-for-cloudflare-ai-gateway'
+					),
 				} );
 			} )
 			.catch( ( err ) =>
@@ -147,7 +150,7 @@ export default function CredentialsTab() {
 						err,
 						__(
 							'Could not save settings.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						)
 					),
 				} )
@@ -173,7 +176,10 @@ export default function CredentialsTab() {
 					status: 'error',
 					message: getErrorMessage(
 						err,
-						__( 'Connection test failed.', 'cloudflare-ai-gateway' )
+						__(
+							'Connection test failed.',
+							'provider-for-cloudflare-ai-gateway'
+						)
 					),
 				} )
 			)
@@ -192,7 +198,7 @@ export default function CredentialsTab() {
 						err,
 						__(
 							'Request failed unexpectedly.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						)
 					),
 				} )
@@ -214,7 +220,7 @@ export default function CredentialsTab() {
 				<p className="cfaig-muted">
 					{ __(
 						'No live models loaded yet — only the built-in default is available. This list refreshes automatically once your account has models to show.',
-						'cloudflare-ai-gateway'
+						'provider-for-cloudflare-ai-gateway'
 					) }
 				</p>
 			);
@@ -226,7 +232,7 @@ export default function CredentialsTab() {
 					// translators: %d: number of models loaded from the live Cloudflare catalog.
 					__(
 						'%d model(s) your account can access via Cloudflare Workers AI text generation. The full multi-modal catalog is on the Model Catalog tab.',
-						'cloudflare-ai-gateway'
+						'provider-for-cloudflare-ai-gateway'
 					),
 					models.length
 				) }
@@ -260,7 +266,7 @@ export default function CredentialsTab() {
 					<Notice status="warning" isDismissible={ false }>
 						{ __(
 							'Your API token is connected, but Cloudflare also requires an Account ID — it has no field for this on the Connectors screen. Enter it in the "Cloudflare account" card below and click "Save changes" to finish.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						) }
 					</Notice>
 				) }
@@ -270,7 +276,7 @@ export default function CredentialsTab() {
 					{ createInterpolateElement(
 						__(
 							'<link>Create your Cloudflare API token</link> with both <strong>Workers AI — Edit</strong> and <strong>AI Gateway — Edit</strong> permissions. Text/image generation only needs Workers AI, but the Gateway Config and Logs tabs — and the gateway picker below — need AI Gateway too, or Cloudflare will reject those requests with a generic "Authentication error" even though the token itself is valid. Under "Account Resources," scope the token to this specific account rather than leaving it unselected.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						),
 						{
 							link: (
@@ -287,7 +293,10 @@ export default function CredentialsTab() {
 			<Card>
 				<CardHeader>
 					<h3 className="cfaig-card-heading">
-						{ __( 'Cloudflare account', 'cloudflare-ai-gateway' ) }
+						{ __(
+							'Cloudflare account',
+							'provider-for-cloudflare-ai-gateway'
+						) }
 					</h3>
 				</CardHeader>
 				<CardBody>
@@ -295,11 +304,11 @@ export default function CredentialsTab() {
 						<TextControl
 							label={ __(
 								'Account ID',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 							help={ __(
 								'Find this on the Cloudflare dashboard sidebar.',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 							value={ accountId }
 							onChange={ setAccountId }
@@ -313,7 +322,7 @@ export default function CredentialsTab() {
 								{ createInterpolateElement(
 									__(
 										'Your API token is managed on the <link>Settings → Connectors</link> screen.',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									),
 									{
 										link: (
@@ -334,17 +343,17 @@ export default function CredentialsTab() {
 							<TextControl
 								label={ __(
 									'API token',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 								help={
 									settings?.hasApiKey
 										? __(
 												'A token is already saved — leave blank to keep it.',
-												'cloudflare-ai-gateway'
+												'provider-for-cloudflare-ai-gateway'
 										  )
 										: __(
 												'Requires both the "Workers AI - Edit" and "AI Gateway - Edit" permissions — Workers AI alone can\'t create or manage a gateway.',
-												'cloudflare-ai-gateway'
+												'provider-for-cloudflare-ai-gateway'
 										  )
 								}
 								type="password"
@@ -360,7 +369,7 @@ export default function CredentialsTab() {
 							<Notice status="warning" isDismissible={ false }>
 								{ __(
 									'This plugin needs to be allowed on the Connectors screen before requests will work.',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 							</Notice>
 						) }
@@ -375,7 +384,7 @@ export default function CredentialsTab() {
 								>
 									{ __(
 										'Save changes',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									) }
 								</Button>
 							</FlexItem>
@@ -388,7 +397,7 @@ export default function CredentialsTab() {
 								>
 									{ __(
 										'Test connection',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									) }
 								</Button>
 							</FlexItem>
@@ -400,7 +409,10 @@ export default function CredentialsTab() {
 			<Card>
 				<CardHeader>
 					<h3 className="cfaig-card-heading">
-						{ __( 'AI Gateway', 'cloudflare-ai-gateway' ) }
+						{ __(
+							'AI Gateway',
+							'provider-for-cloudflare-ai-gateway'
+						) }
 					</h3>
 				</CardHeader>
 				<CardBody>
@@ -409,7 +421,7 @@ export default function CredentialsTab() {
 							<SelectControl
 								label={ __(
 									'Gateway used for every inference request',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 								value={ gatewayId }
 								onChange={ setGatewayId }
@@ -417,7 +429,7 @@ export default function CredentialsTab() {
 									{
 										label: __(
 											"— Default (Cloudflare's built-in gateway, no setup needed) —",
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										value: '',
 									},
@@ -432,7 +444,7 @@ export default function CredentialsTab() {
 							<p className="cfaig-muted">
 								{ __(
 									'Every request — free-tier Workers AI and paid usage alike — routes through this gateway, so caching, rate limiting and logging configured on the Gateway Config tab apply automatically.',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 							</p>
 							{ gatewaysError && (
@@ -444,7 +456,7 @@ export default function CredentialsTab() {
 										// translators: %s: the underlying error message.
 										__(
 											"%s Your named gateways (if any) won't show in the list above, and the Gateway Config/Logs tabs won't work, until that's fixed — but text/image generation is unaffected, since those only need Workers AI access.",
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										gatewaysError
 									) }
@@ -461,7 +473,7 @@ export default function CredentialsTab() {
 									>
 										{ __(
 											'Send test prompt',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										) }
 									</Button>
 								</FlexItem>
@@ -473,7 +485,7 @@ export default function CredentialsTab() {
 													// translators: 1: model reply, 2: model ID, 3: latency in milliseconds
 													__(
 														'"%1$s" from %2$s in %3$dms',
-														'cloudflare-ai-gateway'
+														'provider-for-cloudflare-ai-gateway'
 													),
 													inferenceResult.reply,
 													inferenceResult.model,
@@ -493,7 +505,7 @@ export default function CredentialsTab() {
 						<p className="cfaig-muted">
 							{ __(
 								'A gateway is created automatically the first time you save your Account ID and API token.',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 						</p>
 					) }
@@ -505,7 +517,7 @@ export default function CredentialsTab() {
 					<h3 className="cfaig-card-heading">
 						{ __(
 							'Default text generation model',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						) }
 					</h3>
 				</CardHeader>
@@ -515,7 +527,7 @@ export default function CredentialsTab() {
 							<SelectControl
 								label={ __(
 									'Model used by WordPress AI features',
-									'cloudflare-ai-gateway'
+									'provider-for-cloudflare-ai-gateway'
 								) }
 								value={ preferredModel }
 								onChange={ setPreferredModel }
@@ -523,7 +535,7 @@ export default function CredentialsTab() {
 									{
 										label: __(
 											'— Default (Meta Llama 4 Scout 17B) —',
-											'cloudflare-ai-gateway'
+											'provider-for-cloudflare-ai-gateway'
 										),
 										value: '',
 									},
@@ -541,7 +553,7 @@ export default function CredentialsTab() {
 						<p className="cfaig-muted">
 							{ __(
 								'Save your Account ID and API token first to choose a model.',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 						</p>
 					) }

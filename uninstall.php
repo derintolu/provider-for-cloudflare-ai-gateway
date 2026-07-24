@@ -9,7 +9,7 @@
  *
  * @since 0.1.0
  *
- * @package WordPress\CloudflareAiGateway
+ * @package ProviderForCloudflareAiGateway
  */
 
 // Exit if uninstall not called from WordPress.

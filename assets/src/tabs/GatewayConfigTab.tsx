@@ -87,7 +87,7 @@ export default function GatewayConfigTab() {
 						err,
 						__(
 							'Could not load the gateway configuration.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						)
 					),
 				} )
@@ -124,7 +124,7 @@ export default function GatewayConfigTab() {
 					status: 'success',
 					message: __(
 						'Gateway configuration saved.',
-						'cloudflare-ai-gateway'
+						'provider-for-cloudflare-ai-gateway'
 					),
 				} );
 			} )
@@ -135,7 +135,7 @@ export default function GatewayConfigTab() {
 						err,
 						__(
 							'Could not save the gateway configuration.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						)
 					),
 				} )
@@ -157,7 +157,7 @@ export default function GatewayConfigTab() {
 				{ notice?.message ??
 					__(
 						'No gateway is configured yet.',
-						'cloudflare-ai-gateway'
+						'provider-for-cloudflare-ai-gateway'
 					) }
 			</Notice>
 		);
@@ -176,14 +176,17 @@ export default function GatewayConfigTab() {
 			) }
 
 			<p className="cfaig-muted">
-				{ __( 'Gateway:', 'cloudflare-ai-gateway' ) }{ ' ' }
+				{ __( 'Gateway:', 'provider-for-cloudflare-ai-gateway' ) }{ ' ' }
 				<code>{ gatewayId }</code>
 			</p>
 
 			<Card>
 				<CardHeader>
 					<h3 className="cfaig-card-heading">
-						{ __( 'Caching', 'cloudflare-ai-gateway' ) }
+						{ __(
+							'Caching',
+							'provider-for-cloudflare-ai-gateway'
+						) }
 					</h3>
 				</CardHeader>
 				<CardBody>
@@ -191,7 +194,7 @@ export default function GatewayConfigTab() {
 						<ToggleControl
 							label={ __(
 								'Cache responses',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 							checked={ cachingEnabled }
 							onChange={ setCachingEnabled }
@@ -202,7 +205,7 @@ export default function GatewayConfigTab() {
 								<TextControl
 									label={ __(
 										'Cache TTL (seconds)',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									) }
 									type="number"
 									value={ cacheTtl }
@@ -213,7 +216,7 @@ export default function GatewayConfigTab() {
 								<ToggleControl
 									label={ __(
 										'Invalidate cache when content changes',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									) }
 									checked={ cacheInvalidateOnUpdate }
 									onChange={ setCacheInvalidateOnUpdate }
@@ -228,7 +231,10 @@ export default function GatewayConfigTab() {
 			<Card>
 				<CardHeader>
 					<h3 className="cfaig-card-heading">
-						{ __( 'Rate limiting', 'cloudflare-ai-gateway' ) }
+						{ __(
+							'Rate limiting',
+							'provider-for-cloudflare-ai-gateway'
+						) }
 					</h3>
 				</CardHeader>
 				<CardBody>
@@ -236,7 +242,7 @@ export default function GatewayConfigTab() {
 						<ToggleControl
 							label={ __(
 								'Limit requests',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 							checked={ rateLimitingEnabled }
 							onChange={ setRateLimitingEnabled }
@@ -247,7 +253,7 @@ export default function GatewayConfigTab() {
 								<TextControl
 									label={ __(
 										'Max requests',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									) }
 									type="number"
 									value={ rateLimit }
@@ -258,7 +264,7 @@ export default function GatewayConfigTab() {
 								<TextControl
 									label={ __(
 										'Per interval (seconds)',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									) }
 									type="number"
 									value={ rateInterval }
@@ -269,7 +275,7 @@ export default function GatewayConfigTab() {
 								<SelectControl
 									label={ __(
 										'Technique',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									) }
 									value={ rateTechnique }
 									onChange={ setRateTechnique }
@@ -289,7 +295,10 @@ export default function GatewayConfigTab() {
 			<Card>
 				<CardHeader>
 					<h3 className="cfaig-card-heading">
-						{ __( 'Retries', 'cloudflare-ai-gateway' ) }
+						{ __(
+							'Retries',
+							'provider-for-cloudflare-ai-gateway'
+						) }
 					</h3>
 				</CardHeader>
 				<CardBody>
@@ -297,7 +306,7 @@ export default function GatewayConfigTab() {
 						<TextControl
 							label={ __(
 								'Max attempts (1–5)',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 							type="number"
 							min={ 1 }
@@ -310,7 +319,7 @@ export default function GatewayConfigTab() {
 						<TextControl
 							label={ __(
 								'Delay (milliseconds)',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 							type="number"
 							value={ retryDelay }
@@ -319,28 +328,31 @@ export default function GatewayConfigTab() {
 							__nextHasNoMarginBottom
 						/>
 						<SelectControl
-							label={ __( 'Backoff', 'cloudflare-ai-gateway' ) }
+							label={ __(
+								'Backoff',
+								'provider-for-cloudflare-ai-gateway'
+							) }
 							value={ retryBackoff }
 							onChange={ setRetryBackoff }
 							options={ [
 								{
 									label: __(
 										'Constant',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									),
 									value: 'constant',
 								},
 								{
 									label: __(
 										'Linear',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									),
 									value: 'linear',
 								},
 								{
 									label: __(
 										'Exponential',
-										'cloudflare-ai-gateway'
+										'provider-for-cloudflare-ai-gateway'
 									),
 									value: 'exponential',
 								},
@@ -355,7 +367,10 @@ export default function GatewayConfigTab() {
 			<Card>
 				<CardHeader>
 					<h3 className="cfaig-card-heading">
-						{ __( 'Logging & security', 'cloudflare-ai-gateway' ) }
+						{ __(
+							'Logging & security',
+							'provider-for-cloudflare-ai-gateway'
+						) }
 					</h3>
 				</CardHeader>
 				<CardBody>
@@ -363,7 +378,7 @@ export default function GatewayConfigTab() {
 						<ToggleControl
 							label={ __(
 								'Collect request logs',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 							checked={ collectLogs }
 							onChange={ setCollectLogs }
@@ -372,7 +387,7 @@ export default function GatewayConfigTab() {
 						<ToggleControl
 							label={ __(
 								'Require authentication for this gateway',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 							checked={ authentication }
 							onChange={ setAuthentication }
@@ -391,7 +406,7 @@ export default function GatewayConfigTab() {
 				>
 					{ __(
 						'Save gateway configuration',
-						'cloudflare-ai-gateway'
+						'provider-for-cloudflare-ai-gateway'
 					) }
 				</Button>
 			</Flex>
@@ -401,7 +416,7 @@ export default function GatewayConfigTab() {
 					<h3 className="cfaig-card-heading">
 						{ __(
 							'Managed on the Cloudflare dashboard',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						) }
 					</h3>
 				</CardHeader>
@@ -409,43 +424,51 @@ export default function GatewayConfigTab() {
 					<p className="cfaig-muted">
 						{ __(
 							'These features either have no confirmed API for reading/writing them safely, or are dashboard-only by design — configure them directly on Cloudflare rather than here.',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						) }
 					</p>
 					<ul>
-						<li>{ __( 'Guardrails', 'cloudflare-ai-gateway' ) }</li>
 						<li>
 							{ __(
-								'DLP (data loss prevention)',
-								'cloudflare-ai-gateway'
+								'Guardrails',
+								'provider-for-cloudflare-ai-gateway'
 							) }
 						</li>
 						<li>
-							{ __( 'Spend limits', 'cloudflare-ai-gateway' ) }
+							{ __(
+								'DLP (data loss prevention)',
+								'provider-for-cloudflare-ai-gateway'
+							) }
+						</li>
+						<li>
+							{ __(
+								'Spend limits',
+								'provider-for-cloudflare-ai-gateway'
+							) }
 						</li>
 						<li>
 							{ __(
 								'Dynamic Routing (fallback chains)',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 						</li>
 						<li>
 							{ __(
 								'BYOK provider keys',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 						</li>
 						<li>
 							{ __(
 								'Custom Providers',
-								'cloudflare-ai-gateway'
+								'provider-for-cloudflare-ai-gateway'
 							) }
 						</li>
 					</ul>
 					<ExternalLink href={ CLOUDFLARE_DASHBOARD_URL }>
 						{ __(
 							'Open this gateway on the Cloudflare dashboard',
-							'cloudflare-ai-gateway'
+							'provider-for-cloudflare-ai-gateway'
 						) }
 					</ExternalLink>
 				</CardBody>

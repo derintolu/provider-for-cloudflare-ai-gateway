@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace WordPress\CloudflareAiGateway\Gateway;
+namespace ProviderForCloudflareAiGateway\Gateway;
 
 use WP_Error;
 
-use function WordPress\CloudflareAiGateway\get_account_id;
-use function WordPress\CloudflareAiGateway\get_api_key;
+use function ProviderForCloudflareAiGateway\get_account_id;
+use function ProviderForCloudflareAiGateway\get_api_key;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -68,7 +68,7 @@ final class ModelCatalog {
 		if ( $accountId === '' || $apiKey === '' ) {
 			return new WP_Error(
 				'cfaig_missing_credentials',
-				__( 'Account ID and API token are both required to browse the model catalog.', 'cloudflare-ai-gateway' ),
+				__( 'Account ID and API token are both required to browse the model catalog.', 'provider-for-cloudflare-ai-gateway' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -117,7 +117,7 @@ final class ModelCatalog {
 
 				$task = isset( $item['task']['name'] ) && is_string( $item['task']['name'] )
 					? $item['task']['name']
-					: __( 'Unknown', 'cloudflare-ai-gateway' );
+					: __( 'Unknown', 'provider-for-cloudflare-ai-gateway' );
 
 				$models[] = array(
 					'id'   => $item['name'],
